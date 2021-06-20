@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+    </head>
+    <body>
+        <table id="personaTbl" action="" method="post" class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>DPI</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Sexo</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="persona: ${personas}">
+                    <td th:text="${persona.id}"/>
+                    <td th:text="${persona.dpi}"/>
+                    <td th:text="${persona.nombres}"/>
+                    <td th:text="${persona.apellidos}"/>
+                    <td th:text="${persona.fecha_nac}"/>
+                    <td th:text="${persona.sexo}"/>
+                    <td th:text="${persona.estado}"/>
+                </tr>     
+            </tbody>
+        </table>
+    </body>
+</html>
