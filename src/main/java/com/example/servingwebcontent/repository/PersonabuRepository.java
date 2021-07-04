@@ -5,10 +5,13 @@
  */
 package com.example.servingwebcontent.repository;
 
+import com.example.servingwebcontent.models.Personabu;
+import org.springframework.data.repository.CrudRepository;
+
 /**
  *
  * @author vhjim
  */
-public interface PersonaRepository {
+public interface PersonabuRepository {
     
 }

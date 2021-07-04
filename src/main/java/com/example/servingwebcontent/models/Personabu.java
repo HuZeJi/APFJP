@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.servingwebcontent.repository;
+package com.example.servingwebcontent.models;
 
 /**
  *
  * @author vhjim
  */
-public interface PersonaRepository {
+public class Personabu {
     
 }

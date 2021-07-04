@@ -9,6 +9,6 @@ package com.example.servingwebcontent.repository;
  *
  * @author vhjim
  */
-public interface PersonaRepository {
+public interface UsuarioRepository {
     
 }
