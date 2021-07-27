@@ -5,10 +5,16 @@
  */
 package com.example.servingwebcontent.repository;
 
+import com.example.servingwebcontent.models.Descripcion;
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author vhjim
  */
-public interface DescripcionRepository {
-    
+@Repository
+public interface DescripcionRepository extends CrudRepository<Descripcion, Integer> {
+    public List<Descripcion> findByProductoId(int productoId);
 }

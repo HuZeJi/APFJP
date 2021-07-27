@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
@@ -20,8 +21,6 @@
     <nav class="navbar navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand d-flex justify-content-between align-items-md-center" href="/index">
-                <img src="./assets/logo_transparent.png" alt="" width="50"
-                    height="50" class="d-inline-block align-text-top" />
                 Asistente de inventarios
             </a>
             <button type="button" class="btn btn-outline-danger">Cerrar sesión</button>
@@ -33,9 +32,9 @@
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/index">Dashboard</a>
             </li>
-            <li class="nav-item">
+<!--            <li class="nav-item">
                 <a class="nav-link" href="/bodegas">Bodegas</a>
-            </li>
+            </li>-->
             <li class="nav-item">
                 <a class="nav-link" href="/clientes">Clientes</a>
             </li>
@@ -58,6 +57,8 @@
                     <a class="nav-link" href="/productos/form">Crear nuevo</a>
                 </li>
             </ul>
+            
+            
 
             <div class="table-responsive-md">
                 <table class="table w-100">
@@ -69,16 +70,20 @@
                         <th>Precio</th>
                         <th>Costo</th>
                     </tr>
-                    <tr>
-                        <td>Jill</td>
-                        <td>Jill</td>
-                        <td>Jill</td>
-                        <td>Smith</td>
-                        <td>50</td>
-                        <td>50</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button>
-                            <button type="button" class="btn btn-outline-info btn-sm">Editar</button>
+                    <tr th:each="producto: ${productos}">
+                        <td th:text="${producto.id}"/>
+                        <td th:text="${producto.id}"/>
+                        <td th:text="${producto.descripcion}"/>
+                        <td th:text="${producto.estado}"/>
+                        <td th:text="${producto.defaultPrecio}"/>
+                        <td th:text="${producto.defaultCosto}"/>
+                        <td>                            
+                            <form action="#" th:action="@{/productos/delete/} + ${{producto.id}}" method="get">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                            </form>             
+                            <form action="#" th:action="@{/productos/form/} + ${{producto.id}}" method="get">
+                            <button type="submit" class="btn btn-outline-info btn-sm">Editar</button>
+                            </form>
                         </td>
                     </tr>
                 </table>

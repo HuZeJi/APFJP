@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asistente de Inventarios</title>
-    <link rel="stylesheet" href="./css/index.css" />
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/styles.css}" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous" />
     <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
@@ -20,8 +21,6 @@
     <nav class="navbar navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand d-flex justify-content-between align-items-md-center" href="/index">
-                <img src="./assets/logo_transparent.png" alt="" width="50"
-                    height="50" class="d-inline-block align-text-top" />
                 Asistente de inventarios
             </a>
             <button type="button" class="btn btn-outline-danger">Cerrar sesión</button>
@@ -58,58 +57,76 @@
                     <a class="nav-link active" href="/productos/form">Crear nuevo</a>
                 </li>
             </ul>
-
-            <form>
+            
+            <form action="#" th:action="@{/productos/create}" th:object="${producto}" method="post">
+                <input type="text" th:field="*{id}" hidden/>
                 <div class="form-group mt-3">
                     <label for="descripcion">Descripción</label>
-                    <input type="text" class="form-control" id="descripcion"
-                        placeholder="Ingrese la descripciónn del producto">
+                    <input type="text" class="form-control" id="descripcion" 
+                        placeholder="Ingrese la descripción del producto" th:field="*{descripcion}"/>
                 </div>
                 <div class="form-group mt-3">
                     <label for="precio">Precio</label>
-                    <input type="number" class="form-control" id="precio" placeholder="Ingrese el precio del producto">
+                    <input type="number" class="form-control" id="precio" 
+                           placeholder="Ingrese el precio del producto" th:field="*{defaultPrecio}">
                 </div>
+                
                 <div class="form-group mt-3">
                     <label for="costo">Costo</label>
-                    <input type="number" class="form-control" id="costo" placeholder="Ingrese el costo del producto">
+                    <input type="number" class="form-control" id="costo" 
+                           placeholder="Ingrese el costo del producto" th:field="*{defaultCosto}">
                 </div>
-                <div class="form-group mt-3">
+                
+<!--                <div class="form-group mt-3">
                     <label for="bodega">Bodega</label>
-                    <select id="bodega" class="form-control">
-                      <option selected>Seleccione una bodega</option>
-                      <option>...</option>
+                    <select id="bodega" class="form-control" th:field="*{bodegaId}">
+                        <option 
+                          th:each="empleado : ${empleadosSelect}" 
+                          th:value="${empleado.id}" 
+                          th:text="${empleado.val}"
+                        />
                     </select>
-                </div>
+                </div>-->
 
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
 
             <div class="border p-3 mt-3">
-                <form class="d-flex justify-content-between">
+                
+                <form class="d-flex justify-content-between" th:action="@{/productos/detalle/create/} + ${{producto.Id}}" th:object="${descripcion}" method="post">
+                    <input type="text" th:field="*{id}" hidden/>
                     <div class="form-group mb-2">
                         <label for="name-desc" class="sr-only">Nombre del detalle</label>
-                        <input type="text" class="form-control" id="name-desc" placeholder="Ingrese el nombre de la descripción">
+                        <input type="text" class="form-control" id="name-desc" placeholder="Ingrese el nombre de la descripción"
+                               th:field="*{llave}"/>
                     </div>
                     <div class="form-group mb-2">
                         <label for="det-desc" class="sr-only">Descripción del detalle</label>
-                        <input type="text" class="form-control" id="det-desc" placeholder="Ingrese el detalle de la descripción">
+                        <input type="text" class="form-control" id="det-desc" placeholder="Ingrese el detalle de la descripción"
+                               th:field="*{valor}"/>
                     </div>
                     
                     <div class="d-flex align-items-end">
                         <button type="submit" class="btn btn-primary mb-2">Guardar detalle</button>
                     </div>
                 </form>
-    
+                
+                
+
                 <div class="table-responsive-md">
                     <table class="table w-100">
                         <tr>
                             <th>Nombre del detalle</th>
                             <th>Descripción del detalle</th>
                         </tr>
-                        <tr>
-                            <td>Jill</td>
-                            <td>Jill</td>
-                            <td><button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button></td>
+                        <tr th:each="descripcion: ${descripciones}">
+                            <td th:text="${descripcion.llave}"/>
+                            <td th:text="${descripcion.valor}"/>               
+                            <td>
+                                <form action="#" th:action="@{/productos/detalle/delete/} + ${{descripcion.id}} + @{/} + ${{descripcion.productoId}}" method="get">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                                </form>   
+                            </td>
                         </tr>
                     </table>
                 </div>

@@ -5,10 +5,17 @@
  */
 package com.example.servingwebcontent.repository;
 
+import com.example.servingwebcontent.models.Producto;
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+
 /**
  *
  * @author vhjim
  */
-public interface ProductoRepository {
+public interface ProductoRepository extends CrudRepository<Producto, Integer>{
+    
+    List<Producto> findByIdAndEstado(Integer id, Short estado);
+    List<Producto> findByEstado(Short estado);
     
 }
