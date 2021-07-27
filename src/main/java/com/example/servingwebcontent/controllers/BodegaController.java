@@ -39,7 +39,7 @@ public class BodegaController {
     
     @GetMapping("/bodegas")
     public String bodegas(Model model){
-        List<BodegaTo> bodegas = bodegaToRepository.findAllActivesBodegas();
+        List<BodegaTo> bodegas = bodegaToRepository.findAllBodegas();
         System.out.println("bodegas " + bodegas);
         model.addAttribute("bodegas", bodegas);
         return "bodega.html";
