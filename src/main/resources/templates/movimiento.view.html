@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8" />
@@ -24,7 +25,9 @@
                     height="50" class="d-inline-block align-text-top" />
                 Asistente de inventarios
             </a>
-            <button type="button" class="btn btn-outline-danger">Cerrar sesión</button>
+            <a href="/login" >
+            <button class="btn btn-outline-danger">Cerrar Sesion</button>
+             </a> 
         </div>
     </nav>
     <hr class="dropdown-divider" />
@@ -49,16 +52,15 @@
                 <a class="nav-link" href="/productos">Productos</a>
             </li>
         </ul>
-        <div class="work-area">
-            <ul class="nav nav-tabs">
+          <div class="work-area">
+               <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/movimientos">Crear Nuevo</a>
+                    <a class="nav-link " aria-current="page" href="/movimientos">Crear Nuevo</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/movimientos/form">Listado</a>
+                    <a class="nav-link active" href="/movimientos/form">Listado</a>
                 </li>
             </ul>
-
             <div class="table-responsive-md">
                 <table class="table w-100">
                     <tr>
@@ -66,23 +68,29 @@
                         <th>Producto</th>
                         <th>Cliente</th>
                         <th>Fecha</th>
-                        <th>Importe</th>
+                        
                         <th>Cantidad</th>
                         <th>Subtotal</th>
                     </tr>
                     <tr>
-                        <td>Jill</td>
-                        <td>Jill</td>
-                        <td>Jill</td>
-                        <td>Jill</td>
-                        <td>Smith</td>
-                        <td>50</td>
-                        <td>(+/-)50</td>
+                        <td>5</td>
+                        <td>Rotomartillo version1</td>
+                        <td>Hugo Chavez</td>
+                        <td>28/07/2021</td>
+                        
+                        <td>5</td>
+                        <td>500</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                            <br><button type="button" class="btn btn-outline-info btn-sm">Editar</button></br>
+                        </td>
                     </tr>
+                    
                 </table>
+                
             </div>
-
-        </div>
+                   
+               </div>
     </div>
 </body>
 

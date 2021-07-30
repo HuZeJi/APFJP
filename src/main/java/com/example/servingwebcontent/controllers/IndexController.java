@@ -5,19 +5,40 @@
  */
 package com.example.servingwebcontent.controllers;
 
+import com.example.servingwebcontent.models.to.IndexTo;
+import com.example.servingwebcontent.repository.IndexRepository;
+import com.example.servingwebcontent.repository.IndexToRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
- * @author vhjim
+ * @author adria
  */
 @Controller
-public class IndexController {   
-    
+public class IndexController { 
+    @Autowired
+    private IndexRepository indexRepository;
+    @Autowired
+    private IndexToRepository indexToRepository;
+
     @GetMapping("/index")
-    public String empleados(Model model){
-        return "index.html";
+    public String index(Model model){
+        List<IndexTo> Indexs = indexToRepository.getIndex();
+        System.out.println("Indexs" + Indexs);
+        model.addAttribute("Indexs", Indexs);
+          return "index.html";
     }
+
 }
+    
+    
+    
+    
+   
+
