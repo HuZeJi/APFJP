@@ -24,6 +24,7 @@ body{
 
 .nav-link{
     color: #303030 !important;
+    
 }
 
 .nav-link:hover, .active {
@@ -59,4 +60,164 @@ body{
 .btn-primary:hover{
     background-color: #2A8ADB !important;
     border-color: #2A8ADB !important;
+}
+
+        /*grafica de barras*/
+  .chart-wrap {
+        --chart-width:290px;
+        --grid-color:#aaa;
+        --bar-color:#F16335;
+        --bar-thickness:30px;
+        --bar-rounded: 3px;
+        --bar-spacing:10px;
+ 
+        font-family:sans-serif;
+        width:var(--chart-width);
+    }
+ 
+    .chart-wrap .title{
+        font-weight:bold;
+        padding:1.8em 0;
+        text-align:center;
+        white-space:nowrap;
+    }
+ 
+    /* cuando definimos el gráfico en horizontal, lo giramos 90 grados */
+    .chart-wrap.horizontal .grid{
+        transform:rotate(-90deg);
+    }
+ 
+    .chart-wrap.horizontal .bar::after{
+        /* giramos las letras para horizontal*/
+        transform: rotate(45deg);
+        padding-top:0px;
+        display: block;
+    }
+ 
+    .chart-wrap .grid{
+        margin-left:750px;
+        position:relative;
+        padding:5px 0 5px 0;
+        height:100%;
+        width:100%;
+        margin-top: -250px;
+        border-left:2px solid var(--grid-color);
+    }
+ 
+    /* posicionamos el % del gráfico*/
+    .chart-wrap .grid::before{
+        font-size:0.8em;
+        font-weight:bold;
+        content:'0%';
+        position:absolute;
+        left:-0.5em;
+        top:-1.5em;
+    }
+    .chart-wrap .grid::after{
+        font-size:0.8em;
+        font-weight:bold;
+        content:'100%';
+        position:absolute;
+        right:-1.5em;
+        top:-1.5em;
+    }
+ 
+    /* giramos las valores de 0% y 100% para horizontal */
+    .chart-wrap.horizontal .grid::before, .chart-wrap.horizontal .grid::after {
+        transform: rotate(90deg);
+    }
+ 
+    .chart-wrap .bar {
+        width: var(--bar-value);
+        height:var(--bar-thickness);
+        margin:var(--bar-spacing) 0;
+        background-color:var(--bar-color);
+        border-radius:0 var(--bar-rounded) var(--bar-rounded) 0;
+    }
+ 
+    .chart-wrap .bar:hover{
+        opacity:0.7;
+    }
+ 
+    .chart-wrap .bar::after{
+        content:attr(data-name);
+        margin-left:100%;
+        padding:10px;
+        display:inline-block;
+        white-space:nowrap;
+    }
+ 
+
+ /*******grafica circular*********/
+ :root{
+    --color_facebook: red;
+    --color_twitter: green;
+    --color_instagram: skyblue;
+    --color_pinterest: skyblue;
+    --background-color: rgb(15, 17, 27);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.title_grafico{
+    margin-top: 100px;
+    text-align: center;
+    color: #fff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
+}
+/*cuadros pequeños junto con su producto a la par*/
+.container_grafico{
+    width: 500px;
+    height: 350px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: auto;
+}
+/*tamaño de la grafica*/
+.grafico{
+    width: 200px;
+    height: 200px;
+    margin-top: -10px;
+    border-radius: 50%;
+    background-image: conic-gradient(var(--color_facebook)50%,
+                                        var(--color_twitter)50% 81%,    
+                                        var(--color_instagram)81% 88%,
+                                        var(--color_instagram)88%);
+box-shadow: 1px 1px 5px 1px rgb(70, 70, 70);
+}
+.leyenda_all{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+[class^="color_"]{
+    width: 15px;
+    height: 15px;
+    background-color: var(--color_facebook);
+    margin-right: 8px;
+    border-radius: 3px;
+}
+.color_twitter{
+    background-color: var(--color_twitter);
+}
+.color_instagram{
+    background-color: var(--color_instagram);
+}
+
+.social{
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
+    line-height: 1.6;
+}
+.total{
+color: #fff;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+padding: 10px;
+border-radius: 3px;
+background-color: rgb(30, 50, 70);  
 }
