@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
  * @author vhjim
  */
 @Repository
-public interface BodegaToRepository extends CrudRepository<BodegaTo, Integer>{
+    public interface BodegaToRepository extends CrudRepository<BodegaTo, Integer>{
     @Query(
         value = "select b.id as id, b.descipcion as descipcion, b.direccion as direccion, concat(p.nombres, concat(' ', p.apellidos)) as encargado, b.estado as estado\n" +
                 "from bodega b, empleado e, persona p\n" +

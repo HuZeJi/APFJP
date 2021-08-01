@@ -4,11 +4,18 @@
  * and open the template in the editor.
  */
 package com.example.servingwebcontent.repository;
+import com.example.servingwebcontent.models.Movimiento;
+import org.springframework.data.repository.CrudRepository;
+import
+ org.springframework.stereotype.Repository;
 
 /**
  *
  * @author vhjim
  */
-public interface MovimientoRepository {
+@Repository
+public interface MovimientoRepository extends CrudRepository<Movimiento, Integer> {
+    
+    
     
 }

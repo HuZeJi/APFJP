@@ -61,50 +61,60 @@
                 </li>
             </ul>
 
-            <form>
+            <form  th:object="${movimiento}">
                 <div class="form-group mt-3">
                     <label for="observaciones">Observaciones</label>
-                    <input type="text" class="form-control" id="observaciones" placeholder="Ingrese las observaciones del movimiento">
+                    <input type="text" class="form-control" id="observaciones" placeholder="Ingrese las observaciones del movimiento"
+                           th:field="*{observaciones}">
                 </div>
                 <div class="form-group mt-3">
                     <label for="importe">Importe</label>
-                    <input type="number" class="form-control" id="importe" placeholder="Ingrese el importe del movimiento">
+                    <input type="number" class="form-control" id="importe" placeholder="Ingrese el importe del movimiento"
+                           th:field="*{precio}">
                 </div>
                 <div class="form-group mt-3">
                     <label for="cantidad">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad" placeholder="Ingrese la cantidad de productos del movimiento">
+                    <input type="number" class="form-control" id="cantidad" placeholder="Ingrese la cantidad de productos del movimiento"
+                           th:field="*{cantidad}">
                 </div>
                 <div class="form-group mt-3">
                     <label for="fecha">Fecha</label>
                     <input type="date" class="form-control" id="fecha"
-                        placeholder="Ingrese la fecha del movimiento.">
+                        placeholder="Ingrese la fecha del movimiento." th:field="*{fecha}">
                 </div>
                 <div class="form-group mt-3">
-                    <label for="producto">Producto</label>
-                    <select id="producto" class="form-control">
-                      <option selected>Seleccione un Producto</option>
-                      <option>...</option>
+                    <label for="producto">Seleccione un producto</label>
+                    <select id="producto" class="form-control" th:field="*{productoId}">
+                        <option 
+                          th:each="producto : ${productosSelect}" 
+                          th:value="${producto.id}" 
+                          th:text="${producto.val}"
+                        />
                     </select>
                 </div>
 
                 <div class="form-group mt-3">
-                    <label for="cliente">Cliente</label>
-                    <select id="cliente" class="form-control">
-                      <option selected>Seleccione un cliente</option>
-                      <option>...</option>
+                    <label for="cliente">Seleccione un cliente</label>
+                    <select id="cliente" class="form-control" th:field="*{clienteId}">
+                        <option 
+                          th:each="cliente : ${clientesSelect}" 
+                          th:value="${cliente.id}" 
+                          th:text="${cliente.val}"
+                        />
                     </select>
                 </div>
 
-                <div class="custom-control custom-radio mt-3">
+                <!--<div class="custom-control custom-radio mt-3">
                     <input type="radio" class="custom-control-input" id="tipoVal1" name="radio-stacked"
-                        required>
+                        required th:field="*{tipo}">
                     <label class="custom-control-label" for="tipoVal1">Ingreso</label>
                 </div>
+                
                 <div class="custom-control custom-radio mb-3">
                     <input type="radio" class="custom-control-input" id="tipoVal2" name="radio-stacked"
                         required>
                     <label class="custom-control-label" for="tipoVal2">Egreso</label>
-                </div>
+                </div>-->
 
                 <button type="submit" class="btn btn-primary mt-3">Guardar</button>
             </form>
