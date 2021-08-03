@@ -24,4 +24,16 @@ public interface LlaveValorToRepository extends CrudRepository<LlaveValorTo, Int
                 "where e.persona_id = p.id", 
         nativeQuery = true)
     List<LlaveValorTo>findAllEmpleadosSelect();
+    
+    @Query(
+        value = "select p.id as id, p.descripcion as val from producto p", 
+        nativeQuery = true)
+    List<LlaveValorTo>findAllProductosSelect();
+    
+    @Query(
+        value = "select c.id as id, concat (concat(p.nombres, \" \"), p.apellidos) as val from \n" +
+                "cliente c, persona p \n" +
+                "where p.id  = c.id", 
+        nativeQuery = true)
+    List<LlaveValorTo>findAllClientesSelect();
 }

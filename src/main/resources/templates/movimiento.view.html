@@ -65,24 +65,28 @@
                 <table class="table w-100">
                     <tr>
                         <th>Código</th>
-                        <th>Producto</th>
-                        <th>Cliente</th>
-                        <th>Fecha</th>
-                        
+                        <th>Observacion</th>
+                        <th>Precio</th>
                         <th>Cantidad</th>
-                        <th>Subtotal</th>
+                        <th>Fecha</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
                     </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Rotomartillo version1</td>
-                        <td>Hugo Chavez</td>
-                        <td>28/07/2021</td>
-                        
-                        <td>5</td>
-                        <td>500</td>
-                        <td>
-                            <button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button>
-                            <br><button type="button" class="btn btn-outline-info btn-sm">Editar</button></br>
+                        <tr th:each="movimiento: ${movimientos}">
+                        <td th:text="${movimiento.id}"/>
+                        <td th:text="${movimiento.observacion}"/>
+                        <td th:text="${movimiento.precio}"/>
+                        <td th:text="${movimiento.cantidad}"/>
+                        <td th:text="${movimiento.fecha}"/>
+                        <td th:text="${movimiento.tipo}"/>
+                        <td th:text="${movimiento.estado}"/>
+                        <td>                            
+                            <form action="#" th:action="@{/movimientos/delete/} + ${{movimiento.id}}" method="get">
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Eliminar</button>
+                            </form>             
+                            <form action="#" th:action="@{/movimientos/form/} + ${{movimiento.id}}" method="get">
+                            <button type="submit" class="btn btn-outline-info btn-sm">Editar</button>
+                            </form>
                         </td>
                     </tr>
                     
